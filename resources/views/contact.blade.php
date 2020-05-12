@@ -117,7 +117,26 @@
             $('#contact_id').val('');
             $('#contactForm').trigger('reset');
             $('#ajaxModel').modal('show');
-        })
+        });
+
+        $('#saveBtn').click(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                data: $('#contactForm').serialize(),
+                url: "{{route('contacts.store')}}",
+                type:"POST",
+                datatype:"JSON",
+                success:function (data) {
+                    $('#contactForm').trigger('reset');
+                    $('#ajaxModel').modal('hide');
+                    table.draw();
+                },
+                error:function (data) {
+                    console.log('Error:' , data);
+                }
+            });
+        });
 
     });
 </script>

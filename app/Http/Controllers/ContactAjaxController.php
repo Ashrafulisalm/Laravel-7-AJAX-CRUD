@@ -31,5 +31,9 @@ class ContactAjaxController extends Controller
         return view('contact');
     }
 
-
+    public function store(Request $request){
+        Contact::updateOrCreate(['id'=>$request->contact_id],
+            ['name'=>$request->name,'email'=>$request->email,'phone'=>$request->phone]);
+        return response()->json(['success'=>'Contact Added Successfully']);
+    }
 }
