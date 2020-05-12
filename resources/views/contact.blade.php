@@ -111,7 +111,13 @@
             ]
         });
 
-
+        $('#createContact').click(function () {
+            $('#saveBtn').html("Save Contact");
+            $('#modelHeading').html('Create New Contact');
+            $('#contact_id').val('');
+            $('#contactForm').trigger('reset');
+            $('#ajaxModel').modal('show');
+        })
 
     });
 </script>
