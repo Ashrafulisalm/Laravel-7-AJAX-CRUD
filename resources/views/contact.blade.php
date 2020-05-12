@@ -138,6 +138,26 @@
             });
         });
 
+        $('body').on('click','.deleteContact',function () {
+            var del_id=$(this).data('id');
+            var statement=confirm('Are you want do Delete!');
+
+            if(statement==true){
+                $.ajax({
+                    type:'DELETE',
+                    url:"{{route('contacts.store')}}" + '/' + del_id,
+                    success:function (data) {
+                        table.draw();
+                    },
+                    error:function (data) {
+                        console.log('Error',data);
+                    }
+                });
+            } else {
+                table.draw();
+            }
+        });
+
     });
 </script>
 </body>

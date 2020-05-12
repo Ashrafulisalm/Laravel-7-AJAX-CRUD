@@ -36,4 +36,9 @@ class ContactAjaxController extends Controller
             ['name'=>$request->name,'email'=>$request->email,'phone'=>$request->phone]);
         return response()->json(['success'=>'Contact Added Successfully']);
     }
+
+    public function destroy($id){
+        Contact::findOrFail($id)->delete();
+        return response()->json(['success'=>'Contact Deleted Successfully']);
+    }
 }
