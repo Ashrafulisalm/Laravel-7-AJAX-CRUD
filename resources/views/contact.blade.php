@@ -56,19 +56,19 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Email</label>
                                     <div class="col-md-12">
-                                        <textarea id="email" name="email" required="" placeholder="Enter Email" class="form-control"></textarea>
+                                        <input id="email" name="email" required="" placeholder="Enter Email" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Phone</label>
                                     <div class="col-md-12">
-                                        <textarea id="phone" name="phone" required="" placeholder="Enter Phone" class="form-control"></textarea>
+                                        <input id="phone" name="phone" required="" placeholder="Enter Phone" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save Contact
+                                    <button type="submit" class="btn btn-primary" id="saveBtn" value="create">
                                     </button>
                                 </div>
                             </form>
@@ -156,6 +156,21 @@
             } else {
                 table.draw();
             }
+        });
+
+        $('body').on('click','.editContact',function () {
+            var edit_id=$(this).data('id');
+
+            $.get("{{route('contacts.index')}}" + '/' +edit_id+ '/edit',function (data) {
+                $('#modelHeading').html('Update Contact');
+                $('#saveBtn').html('Update');
+                $('#ajaxModel').modal('show');
+                $('#contact_id').val(data.id);
+                $('#name').val(data.name);
+                $('#email').val(data.email);
+                $('#phone').val(data.phone);
+            });
+
         });
 
     });

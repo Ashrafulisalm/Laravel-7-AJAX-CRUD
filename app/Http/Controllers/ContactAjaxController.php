@@ -41,4 +41,9 @@ class ContactAjaxController extends Controller
         Contact::findOrFail($id)->delete();
         return response()->json(['success'=>'Contact Deleted Successfully']);
     }
+
+    public function edit($id){
+        $contact=Contact::findOrFail($id);
+        return response()->json($contact);
+    }
 }
